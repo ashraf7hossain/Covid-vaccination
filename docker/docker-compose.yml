@@ -14,7 +14,6 @@ services:
     ports:
       - "8080:8000"
     environment:
-      # Add any necessary environment variables here
       APP_ENV: local
 
   postgres:

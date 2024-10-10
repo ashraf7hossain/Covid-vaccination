@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: php
+    restart: always
+    working_dir: /var/www
+    volumes:
+      - ../src:/var/www
+    command: php vaccination-system/artisan serve --host=0.0.0.0 --port=8000
+    ports:
+      - "8080:8000"
+    environment:
+      # Add any necessary environment variables here
+      APP_ENV: local
+
+  postgres:
+    image: postgres:16-alpine3.19
+    ports:
+      - "5433:5432"
+    restart: always
+    volumes:
+      - ../src:/var/www/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: Admin@123
+      POSTGRES_DB: laravel
+      POSTGRES_USER: admin
+

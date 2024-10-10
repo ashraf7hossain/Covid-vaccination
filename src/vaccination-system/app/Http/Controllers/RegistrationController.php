@@ -17,10 +17,6 @@ class RegistrationController extends Controller
 
     public function search(SearchRequest $request)
     {
-        $request->validate([
-            'nid' => 'required|string',
-        ]);
-
         $registration = $this->registrationService->getRegisteredUsers($request->validated());
 
 
